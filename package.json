@@ -1,0 +1,68 @@
+{
+  "name": "web-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc -p tsconfig.app.json",
+    "start": "node dist/server.js",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:stop": "pm2 stop ecosystem.config.cjs",
+    "pm2:restart": "pm2 restart ecosystem.config.cjs",
+    "pm2:delete": "pm2 delete ecosystem.config.cjs",
+    "pm2:logs": "pm2 logs web-agent",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opentiny/web-agent.git"
+  },
+  "keywords": [
+    "webagent",
+    "mcp",
+    "oauth",
+    "proxy",
+    "agent"
+  ],
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opentiny/web-agent/issues"
+  },
+  "homepage": "https://github.com/opentiny/web-agent#readme",
+  "dependencies": {
+    "@opentiny/agent": "^0.3.3",
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^7.1.0",
+    "uuid": "^13.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/compression": "^1.8.1",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.6",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "nodemon": "^3.1.9",
+    "pm2": "^5.4.3",
+    "prettier": "^3.7.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.52.0"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  }
+}
