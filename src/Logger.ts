@@ -12,16 +12,17 @@ const developmentFormat = winston.format.combine(
   }),
 );
 
+// Custom format to mask sensitive data
+const maskFormat = winston.format((info) => {
+  return maskSensitiveData(info);
+})();
+
 // Create custom format for production
 const productionFormat = winston.format.combine(
   winston.format.timestamp(),
   winston.format.errors({ stack: true }),
+  maskFormat,
   winston.format.json(),
-  winston.format.printf((info) => {
-    // Mask sensitive information
-    const masked = maskSensitiveData(info);
-    return JSON.stringify(masked);
-  }),
 );
 
 // Function to mask sensitive data

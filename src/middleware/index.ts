@@ -4,7 +4,6 @@ import express from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { corsMiddleware } from './corsMiddleware';
-import { securityMiddleware } from './securityMiddleware';
 import { requestIdMiddleware } from './requestIdMiddleware';
 import { loggingMiddleware } from './loggingMiddleware';
 import { validationMiddleware } from './validationMiddleware';
@@ -62,11 +61,12 @@ export function setupMiddleware(app: Application) {
 
   // Custom middleware (order matters)
   app.use(corsMiddleware);
-  app.use(securityMiddleware);
   app.use(requestIdMiddleware);
   app.use(loggingMiddleware);
   app.use(validationMiddleware);
+}
 
-  // Error handling middleware (must be last)
+// Error handling middleware - must be registered AFTER routes
+export function setupErrorHandling(app: Application) {
   app.use(errorMiddleware);
 }

@@ -1,7 +1,7 @@
 // Main application entry point
 import express from 'express';
 import helmet from 'helmet';
-import { setupMiddleware } from './middleware';
+import { setupMiddleware, setupErrorHandling } from './middleware';
 import { setupRoutes } from './routes';
 import { logger } from './Logger';
 
@@ -27,9 +27,14 @@ export class Application {
     await setupRoutes(this.app);
   }
 
+  private setupErrorHandling() {
+    setupErrorHandling(this.app);
+  }
+
   public async initialize() {
     try {
       await this.setupRoutes();
+      this.setupErrorHandling(); // Must be after routes
       logger.info('Application initialized successfully');
     } catch (error) {
       logger.error('Failed to initialize application:', error);

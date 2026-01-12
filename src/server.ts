@@ -14,6 +14,11 @@ async function startServer() {
     const server = app.listen(port, host, () => {
       logger.info(`WebAgent server started on ${host}:${port}`);
       logger.info(`Environment: ${config.app.env}`);
+
+      // 如果是 PM2 启动，发送 ready 信号
+      if (process.send) {
+        process.send('ready');
+      }
     });
 
     // Graceful shutdown
