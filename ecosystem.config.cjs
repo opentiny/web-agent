@@ -16,6 +16,8 @@ module.exports = {
       exec_mode: 'fork', // fork 模式（单实例推荐）
       watch: false, // 生产环境不监听文件变化
       max_memory_restart: '1G', // 内存超过 1G 时自动重启
+      // Node.js 启动参数，加载 .env 文件
+      node_args: '--env-file=.env',
       env: {
         NODE_ENV: 'production',
       },

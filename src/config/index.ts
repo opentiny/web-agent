@@ -13,6 +13,13 @@ interface AppConfig {
   };
 }
 
+// 解析 CORS origin 配置
+const corsOrigin = process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'];
+
+// - 如果 origin 包含通配符 "*"，必须禁用 credentials（CORS 规范要求）
+// - 否则启用 credentials，允许携带 cookie 等凭证
+const corsCredentials = !corsOrigin.includes('*');
+
 export const config: AppConfig = {
   app: {
     port: parseInt(process.env.AGENT_PORT || '3000', 10),
@@ -21,7 +28,7 @@ export const config: AppConfig = {
     apiPrefix: APP_API_PREFIX,
   },
   cors: {
-    origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'],
-    credentials: true,
+    origin: corsOrigin,
+    credentials: corsCredentials,
   },
 };
