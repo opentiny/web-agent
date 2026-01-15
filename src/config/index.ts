@@ -16,9 +16,10 @@ interface AppConfig {
 // 解析 CORS origin 配置
 const corsOrigin = process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'];
 
-// - 如果 origin 包含通配符 "*"，必须禁用 credentials（CORS 规范要求）
-// - 否则启用 credentials，允许携带 cookie 等凭证
-const corsCredentials = !corsOrigin.includes('*');
+// 即使 origin 包含通配符 "*"，我们也允许启用 credentials。
+// 中间件在处理请求时会根据请求的 Origin 动态设置 Access-Control-Allow-Origin，
+// 这样可以同时满足 "*" 的通用性以及 credentials 的要求。
+const corsCredentials = true;
 
 export const config: AppConfig = {
   app: {
