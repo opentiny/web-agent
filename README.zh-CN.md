@@ -21,11 +21,20 @@
 
 [English](README.md) | 简体中文
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/opentiny/web-agent)
+
 ---
 
 ## 概述
 
 WebAgent 是一个开源的智能代理中枢服务，提供 **MCP（Model Context Protocol）** 代理转发核心功能。
+它是 OpenTiny NEXT 智能化解决方案的一环，通常与 `@opentiny/next-sdk` 搭配使用：业务应用通过 SDK 将能力封装为 MCP 工具并连接 WebAgent，由 WebAgent 负责连接、转发与会话管理，使 AI/Agent 能以自然语言驱动应用。
+如需了解更完整的生态与角色定位，请参阅
+
+- [Opentiny 官网](https://opentiny.design/)
+- [一场 MCP 生态的变革——详解 OpenTiny NEXT 逆向思维的技术创新](https://mp.weixin.qq.com/s/xMx5sfKGh2R-oZPGUwv70A)。
+
+![OpenTiny NEXT 生态与 WebAgent 位置](docs/imgs/home_archi.jpg)
 
 ## 功能特性
 
@@ -65,12 +74,14 @@ cp example.env .env
 
 环境变量说明：
 
-| 变量名 | 说明 | 默认值 |
-|--------|------|--------|
-| `AGENT_PORT` | 服务监听端口 | `3000` |
-| `AGENT_HOST` | 监听地址 | `0.0.0.0` |
-| `NODE_ENV` | 运行环境 | `development` |
+| 变量名        | 说明                     | 默认值                  |
+| ------------- | ------------------------ | ----------------------- |
+| `AGENT_PORT`  | 服务监听端口             | `3000`                  |
+| `AGENT_HOST`  | 监听地址                 | `0.0.0.0`               |
+| `NODE_ENV`    | 运行环境                 | `development`           |
 | `CORS_ORIGIN` | 跨域来源列表（逗号分隔） | `http://localhost:3000` |
+
+说明：`example.env` 默认设置 `NODE_ENV=production`，本地开发可将 `.env` 修改为 `development`。
 
 ### 启动服务
 
@@ -81,7 +92,7 @@ pnpm dev
 # 构建生产版本
 pnpm build
 
-# 生产模式运行
+# 生产模式运行（需先构建 dist）
 pnpm start
 
 # 使用 PM2 运行
@@ -131,27 +142,27 @@ web-agent/
 
 ### 健康检查
 
-| 端点 | 方法 | 说明 |
-|------|------|------|
-| `/health` | GET | 获取系统状态和版本信息 |
-| `/health/detailed` | GET | 获取详细健康状态（内存、CPU 等） |
-| `/health/metrics` | GET | 获取性能指标 |
+| 端点               | 方法 | 说明                             |
+| ------------------ | ---- | -------------------------------- |
+| `/health`          | GET  | 获取系统状态和版本信息           |
+| `/health/detailed` | GET  | 获取详细健康状态（内存、CPU 等） |
+| `/health/metrics`  | GET  | 获取性能指标                     |
 
 ### MCP 代理接口
 
 所有 MCP 相关接口均以 `/api/v1/webmcp` 为前缀：
 
-| 端点 | 方法 | 说明 |
-|------|------|------|
-| `/api/v1/webmcp/ping` | GET | 连接测试 |
-| `/api/v1/webmcp/sse` | GET | SSE 连接端点 |
-| `/api/v1/webmcp/messages` | POST | 消息转发端点 |
-| `/api/v1/webmcp/mcp` | ALL | Streamable HTTP MCP 端点 |
-| `/api/v1/webmcp/list` | GET | 获取所有客户端会话 |
-| `/api/v1/webmcp/remoter` | GET | 获取所有操控端会话 |
-| `/api/v1/webmcp/tools` | GET | 获取客户端工具列表 |
-| `/api/v1/webmcp/client` | GET | 查询单个客户端信息 |
-| `/api/v1/webmcp/reset` | GET | 重置所有连接 |
+| 端点                      | 方法 | 说明                     |
+| ------------------------- | ---- | ------------------------ |
+| `/api/v1/webmcp/ping`     | GET  | 连接测试                 |
+| `/api/v1/webmcp/sse`      | GET  | SSE 连接端点             |
+| `/api/v1/webmcp/messages` | POST | 消息转发端点             |
+| `/api/v1/webmcp/mcp`      | ALL  | Streamable HTTP MCP 端点 |
+| `/api/v1/webmcp/list`     | GET  | 获取所有客户端会话       |
+| `/api/v1/webmcp/remoter`  | GET  | 获取所有操控端会话       |
+| `/api/v1/webmcp/tools`    | GET  | 获取客户端工具列表       |
+| `/api/v1/webmcp/client`   | GET  | 查询单个客户端信息       |
+| `/api/v1/webmcp/reset`    | GET  | 重置所有连接             |
 
 ### 使用 MCP Inspector 调试
 
@@ -193,6 +204,9 @@ pnpm pm2:stop
 
 # 重启
 pnpm pm2:restart
+
+# 删除
+pnpm pm2:delete
 ```
 
 #### 使用 Docker
@@ -215,6 +229,9 @@ EXPOSE 3000
 CMD ["node", "dist/server.js"]
 ```
 
+说明：该 Dockerfile 假设你已在本地执行 `pnpm build` 生成 `dist` 后再 `docker build`。
+若仓库不包含 `pnpm-lock.yaml`，请移除 `COPY pnpm-lock.yaml ./` 以及 `--frozen-lockfile` 参数。
+
 ### Nginx 反向代理配置示例
 
 ```nginx
@@ -236,7 +253,7 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_cache_bypass $http_upgrade;
-        
+
         # SSE 支持
         proxy_buffering off;
         proxy_read_timeout 86400;
