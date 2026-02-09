@@ -89,7 +89,7 @@ pnpm dev
 
 预期输出:
 
-```
+```text
 WebAgent server started on 0.0.0.0:3000
 Environment: development
 ```

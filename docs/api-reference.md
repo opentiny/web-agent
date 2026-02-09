@@ -660,7 +660,7 @@ console.log(data);
 
 **备注**
 
-- 若 `sessionId` 无效，返回 `{ \"result\": \"No client found for session ID ...\" }`，仍为 200。
+- 若 `sessionId` 无效，返回 `{ "result": "No client found for session ID ..." }`，仍为 200。
 
 **响应示例 / Example**
 

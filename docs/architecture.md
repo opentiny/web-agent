@@ -9,7 +9,7 @@ OpenTiny NEXT 是面向企业的智能化前端解决方案，目标是让传统
 关系可以理解为：
 
 - 业务应用内：使用 `@opentiny/next-sdk` 的 `WebMcpServer` 注册工具，使用 `WebMcpClient` 连接 WebAgent 获取 `sessionId`。
-- 中枢层：WebAgent 提供 MCP 代理转发、SSE/Streamable HTTP 通道与会话管理能力。
+- 中枢层：WebAgent 提供 MCP 代理转发、Streamable HTTP/SSE 通道与会话管理能力。
 - 交互层：可选的 `@opentiny/next-remoter`（TinyRemoter）提供“AI 遥控器/对话框”体验。
 
 下图展示了 OpenTiny NEXT 生态中 WebAgent 与 NEXT-SDKs 的位置关系：
