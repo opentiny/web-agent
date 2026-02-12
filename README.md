@@ -295,13 +295,10 @@ pnpm format:check # Check formatting
 
 ## Contributing
 
-Issues and Pull Requests are welcome!
+Please use the dedicated contribution guide:
 
-1. Fork this repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- English: [CONTRIBUTING.md](./CONTRIBUTING.md)
+- 中文: [CONTRIBUTING.zh-CN.md](./CONTRIBUTING.zh-CN.md)
 
 ## Related Links
 
