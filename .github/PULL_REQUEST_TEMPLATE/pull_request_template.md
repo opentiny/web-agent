@@ -1,3 +1,5 @@
+For English template, use [this link](?template=pull_request_en.md) or append `?template=pull_request_en.md` to the URL.
+
 ## 变更摘要
 
 <!-- 本次改动是什么，为什么要改。请简洁说明。 -->
