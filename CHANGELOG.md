@@ -3,6 +3,12 @@
 格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 并遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.1.0](https://github.com/opentiny/web-agent/compare/web-agent-v1.0.0...web-agent-v1.1.0) (2026-02-13)
+
+### Features
+
+- initialize web-agent ([96b8589](https://github.com/opentiny/web-agent/commit/96b8589bc21f241096c9f08b5db451469fe9eb7c))
+
 ## [未发布]
 
 ### 新增
