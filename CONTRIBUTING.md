@@ -146,9 +146,9 @@ Use GitHub private vulnerability reporting (Security Advisories) when available.
 
 By contributing, you agree that your contributions are licensed under the repository license ([MIT](./LICENSE)).
 
-## Join the Open Source Community
+## Join the Open-Source Community
 
-If you are interested in our open source project, you are welcome to join our open source community through the following ways.
+If you are interested in our open-source project, you are welcome to join our open-source community through the following ways.
 
 - Add the official assistant WeChat: opentiny-official, join our technical exchange group
 - Join the mailing list: opentiny@googlegroups.com
