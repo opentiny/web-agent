@@ -3,6 +3,20 @@
 格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 并遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.1.0](https://github.com/opentiny/web-agent/compare/web-agent-v1.0.0...web-agent-v1.1.0) (2026-02-13)
+
+
+### Features
+
+* initialize web-agent ([96b8589](https://github.com/opentiny/web-agent/commit/96b8589bc21f241096c9f08b5db451469fe9eb7c))
+
+
+### Bug Fixes
+
+* add default pr model ([375c559](https://github.com/opentiny/web-agent/commit/375c559082feaf5b908fdaeb4effcb6971fdd027))
+* add default pr template ([cab8027](https://github.com/opentiny/web-agent/commit/cab8027dc7e07b4d5074b059ca50e8458c237071))
+* **github:** move default pr template to root .github dir ([#6](https://github.com/opentiny/web-agent/issues/6)) ([c2015cb](https://github.com/opentiny/web-agent/commit/c2015cb4ce3b75bed33d363dab8c6f4b94129a91))
+
 ## [未发布]
 
 ### 新增
