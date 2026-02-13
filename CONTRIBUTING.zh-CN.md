@@ -89,6 +89,23 @@ pnpm prepare
 - `fix(middleware): handle missing request id`
 - `docs(readme): clarify local startup steps`
 
+## 发版与 Tag 流程
+
+仓库使用 `release-please` 管理版本号、变更日志、GitHub Release 和 Git Tag。
+
+- 触发条件：有提交进入 `main`
+- Release PR：工作流会更新或创建 Release PR，包含 `package.json` 版本变更和 `CHANGELOG.md` 更新
+- 正式发布：Release PR 合并后，release-please 会自动创建 GitHub Release 和 `v1.2.3` 这种格式的 Tag
+
+默认按 Conventional Commits 计算版本：
+
+- `feat:` -> 升级次版本（minor）
+- `fix:` -> 升级补丁版本（patch）
+- `feat!:` 或提交正文包含 `BREAKING CHANGE:` -> 升级主版本（major）
+- `docs:`、`chore:`、`refactor:` 等非可发布提交，单独出现时不会触发发版
+
+因此建议严格使用 Conventional Commits，以保证版本与发版行为可预期。
+
 ## 代码与实现要求
 
 - 遵循 TypeScript 严格模式

@@ -82,6 +82,23 @@ Examples:
 - `fix(middleware): handle missing request id`
 - `docs(readme): clarify local startup steps`
 
+## Release and tag workflow
+
+This repository uses `release-please` to manage release versions, changelog, GitHub Release, and Git tags.
+
+- Trigger: push commits to `main`
+- Release PR: the workflow updates/creates a Release PR that includes `package.json` version bump and `CHANGELOG.md`
+- Publish point: when the Release PR is merged, release-please creates a GitHub Release and a Git tag like `v1.2.3`
+
+Version calculation follows Conventional Commits by default:
+
+- `feat:` -> minor version bump
+- `fix:` -> patch version bump
+- `feat!:` or commit body with `BREAKING CHANGE:` -> major version bump
+- `docs:`, `chore:`, `refactor:` and similar non-releasable commits do not trigger a release by themselves
+
+For this reason, keep commit messages in Conventional Commits format to ensure predictable release behavior.
+
 ## Coding standards
 
 - TypeScript strict mode
