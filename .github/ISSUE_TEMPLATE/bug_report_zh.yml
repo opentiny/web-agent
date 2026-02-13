@@ -1,0 +1,120 @@
+name: 缺陷反馈（中文）
+description: 提交可复现的缺陷问题
+title: '[Bug] '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢提交缺陷。请尽量提供最小可复现信息，便于维护者快速定位问题。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题描述
+      description: 发生了什么？为什么这是问题？
+      placeholder: 请简要描述你遇到的问题。
+    validations:
+      required: true
+  - type: textarea
+    id: to-reproduce
+    attributes:
+      label: 复现步骤
+      description: 请提供最小、稳定的复现步骤。
+      placeholder: |
+        1. 以 ... 配置启动服务
+        2. 调用 ... 接口
+        3. 观察到 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      placeholder: 你期望发生什么？
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      placeholder: 实际发生了什么？
+    validations:
+      required: true
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: 影响范围
+      options:
+        - API 路由（/api/v1/webmcp/*）
+        - 健康检查（/health*）
+        - 中间件（CORS / logging / validation）
+        - 配置与环境变量
+        - 构建或启动流程
+        - 文档
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: web-agent-version
+    attributes:
+      label: WebAgent 版本信息
+      description: 例如 tag、commit SHA 或分支
+      placeholder: v1.0.0 / main@abcdef
+    validations:
+      required: true
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js 版本
+      placeholder: v22.x
+    validations:
+      required: true
+  - type: input
+    id: pnpm-version
+    attributes:
+      label: pnpm 版本
+      placeholder: 10.x
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: 运行方式
+      options:
+        - 本地开发（pnpm dev）
+        - 本地生产模式（pnpm build && pnpm start）
+        - PM2
+        - Docker
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: 操作系统
+      placeholder: macOS 15 / Ubuntu 24.04 / Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相关日志或响应信息
+      description: 粘贴日志、堆栈或接口响应片段。
+      render: shell
+  - type: textarea
+    id: additional
+    attributes:
+      label: 补充信息
+      description: 可补充链接、截图、网络环境或关联 issue。
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已检索现有 issue，未发现重复问题。
+          required: true
+        - label: 我可在仓库最新代码上复现该问题。
+          required: true
+        - label: 我已提供足够信息供维护者复现。
+          required: true

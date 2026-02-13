@@ -1,0 +1,83 @@
+name: Feature Request (English)
+description: Propose a new capability or enhancement for WebAgent
+title: '[Feature] '
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the problem first, then the proposed solution and acceptance criteria.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What user problem or engineering pain are you trying to solve?
+      placeholder: Today we cannot ... which causes ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe the expected behavior and API/UX changes.
+      placeholder: We should add ...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Other approaches and why they are less suitable.
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Small (single file / low risk)
+        - Medium (multiple modules / moderate risk)
+        - Large (architecture or protocol impact)
+    validations:
+      required: true
+  - type: checkboxes
+    id: affected-modules
+    attributes:
+      label: Affected Modules
+      options:
+        - label: Routing (`src/routes/*`)
+        - label: Middleware (`src/middleware/*`)
+        - label: Configuration (`src/config/*`)
+        - label: Logging (`src/Logger.ts`)
+        - label: Runtime/bootstrap (`src/app.ts`, `src/server.ts`)
+        - label: Documentation
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: List verifiable conditions to consider this done.
+      placeholder: |
+        - [ ] API returns ...
+        - [ ] Backward compatibility is maintained
+        - [ ] Docs are updated
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility / Breaking Changes
+      description: Impact on existing endpoints, clients, or deployment.
+      placeholder: None / Requires migration ...
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Context
+      description: Related issues, references, benchmarks, or prototype links.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this request is not a duplicate.
+          required: true
+        - label: I have described concrete acceptance criteria.
+          required: true

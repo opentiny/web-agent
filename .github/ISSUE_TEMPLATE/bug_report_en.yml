@@ -1,0 +1,120 @@
+name: Bug Report (English)
+description: Report a reproducible defect in WebAgent
+title: '[Bug] '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please provide enough detail for maintainers to reproduce quickly.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Bug Summary
+      description: What happened, and why is it a problem?
+      placeholder: A clear and concise bug description.
+    validations:
+      required: true
+  - type: textarea
+    id: to-reproduce
+    attributes:
+      label: Steps To Reproduce
+      description: Minimal, stable reproduction steps.
+      placeholder: |
+        1. Start server with ...
+        2. Call endpoint ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      placeholder: What you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      placeholder: What actually happened.
+    validations:
+      required: true
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: Affected Area
+      options:
+        - API route (/api/v1/webmcp/*)
+        - Health endpoint (/health*)
+        - Middleware (CORS / logging / validation)
+        - Configuration / environment variables
+        - Build / runtime startup
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: web-agent-version
+    attributes:
+      label: WebAgent Version
+      description: e.g. tag, commit SHA, or branch
+      placeholder: v1.0.0 / main@abcdef
+    validations:
+      required: true
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      placeholder: v22.x
+    validations:
+      required: true
+  - type: input
+    id: pnpm-version
+    attributes:
+      label: pnpm Version
+      placeholder: 10.x
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime Mode
+      options:
+        - Local development (pnpm dev)
+        - Local production (pnpm build && pnpm start)
+        - PM2
+        - Docker
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: macOS 15 / Ubuntu 24.04 / Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs Or Response Payload
+      description: Paste logs, stack traces, or API response snippets.
+      render: shell
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Links, screenshots, network setup, or related issues.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and did not find a duplicate.
+          required: true
+        - label: I can reproduce this issue on the latest code in this repository.
+          required: true
+        - label: I have provided enough information for maintainers to reproduce.
+          required: true

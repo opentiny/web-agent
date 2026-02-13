@@ -5,6 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon",
+    "prepare": "node scripts/prepare-husky.mjs",
     "build": "tsc -p tsconfig.app.json",
     "start": "node --env-file=.env dist/server.js",
     "pm2:start": "pm2 start ecosystem.config.cjs",
@@ -14,9 +15,17 @@
     "pm2:logs": "pm2 logs web-agent",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
+    "lint-staged": "lint-staged",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{cjs,mjs,js,json,md,yaml,yml}": "prettier --write"
   },
   "repository": {
     "type": "git",
@@ -54,6 +63,8 @@
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
     "nodemon": "^3.1.9",
     "pm2": "^5.4.3",
     "prettier": "^3.7.4",
