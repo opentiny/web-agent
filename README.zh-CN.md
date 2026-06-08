@@ -74,12 +74,13 @@ cp example.env .env
 
 环境变量说明：
 
-| 变量名        | 说明                     | 默认值                  |
-| ------------- | ------------------------ | ----------------------- |
-| `AGENT_PORT`  | 服务监听端口             | `3000`                  |
-| `AGENT_HOST`  | 监听地址                 | `0.0.0.0`               |
-| `NODE_ENV`    | 运行环境                 | `development`           |
-| `CORS_ORIGIN` | 跨域来源列表（逗号分隔） | `http://localhost:3000` |
+| 变量名              | 说明                                                                      | 默认值                  |
+| ------------------- | ------------------------------------------------------------------------- | ----------------------- |
+| `AGENT_PORT`        | 服务监听端口                                                              | `3000`                  |
+| `AGENT_HOST`        | 监听地址                                                                  | `0.0.0.0`               |
+| `AGENT_STRICT_PORT` | 端口被占用时是否直接启动失败；生产环境默认 `true`，其他环境默认 `false`。 | 基于 `NODE_ENV`         |
+| `NODE_ENV`          | 运行环境                                                                  | `development`           |
+| `CORS_ORIGIN`       | 跨域来源列表（逗号分隔）                                                  | `http://localhost:3000` |
 
 说明：`example.env` 默认设置 `NODE_ENV=production`，本地开发可将 `.env` 修改为 `development`。
 
@@ -284,6 +285,7 @@ pnpm lint         # 代码检查
 pnpm lint:fix     # 自动修复
 pnpm format       # 格式化代码
 pnpm format:check # 检查格式
+pnpm test         # 运行测试
 ```
 
 ### 代码规范

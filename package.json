@@ -16,12 +16,13 @@
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "lint-staged": "lint-staged",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "format:check": "prettier --check \"src/**/*.ts\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"**/*.ts\"",
+    "format:check": "prettier --check \"**/*.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "**/*.ts": [
       "eslint --fix",
       "prettier --write"
     ],
@@ -51,6 +52,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "helmet": "^7.1.0",
+    "portfinder": "^1.0.38",
     "uuid": "^13.0.0",
     "winston": "^3.11.0"
   },
@@ -70,7 +72,8 @@
     "prettier": "^3.7.4",
     "tsx": "^4.19.0",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.52.0"
+    "typescript-eslint": "^8.52.0",
+    "vitest": "^4.1.8"
   },
   "engines": {
     "node": ">=22",

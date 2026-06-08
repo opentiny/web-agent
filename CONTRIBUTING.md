@@ -121,9 +121,8 @@ Run these checks locally before opening a PR:
 pnpm lint
 pnpm format:check
 pnpm build
+pnpm test
 ```
-
-Note: `pnpm test` is currently a placeholder script. If your change needs extra validation, include manual verification steps in the PR description.
 
 ## Submit a pull request
 

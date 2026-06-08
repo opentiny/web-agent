@@ -128,9 +128,8 @@ pnpm prepare
 pnpm lint
 pnpm format:check
 pnpm build
+pnpm test
 ```
-
-说明：当前 `pnpm test` 仍为占位脚本。如本次改动需要额外验证，请在 PR 中写清手工验证步骤和结果。
 
 ## 提交 PR 流程
 

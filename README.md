@@ -74,12 +74,13 @@ cp example.env .env
 
 Environment Variables:
 
-| Variable      | Description                        | Default                 |
-| ------------- | ---------------------------------- | ----------------------- |
-| `AGENT_PORT`  | Service listening port             | `3000`                  |
-| `AGENT_HOST`  | Listening address                  | `0.0.0.0`               |
-| `NODE_ENV`    | Runtime environment                | `development`           |
-| `CORS_ORIGIN` | CORS origin list (comma-separated) | `http://localhost:3000` |
+| Variable            | Description                                                                                  | Default                 |
+| ------------------- | -------------------------------------------------------------------------------------------- | ----------------------- |
+| `AGENT_PORT`        | Service listening port                                                                       | `3000`                  |
+| `AGENT_HOST`        | Listening address                                                                            | `0.0.0.0`               |
+| `AGENT_STRICT_PORT` | Fail when configured port is in use. Defaults to `true` in production and `false` otherwise. | Based on `NODE_ENV`     |
+| `NODE_ENV`          | Runtime environment                                                                          | `development`           |
+| `CORS_ORIGIN`       | CORS origin list (comma-separated)                                                           | `http://localhost:3000` |
 
 Note: `example.env` sets `NODE_ENV=production`. Update `.env` to `development` for local dev if needed.
 
@@ -285,6 +286,7 @@ pnpm lint         # Code linting
 pnpm lint:fix     # Auto-fix lint issues
 pnpm format       # Format code
 pnpm format:check # Check formatting
+pnpm test         # Run tests
 ```
 
 ### Code Standards
