@@ -3,6 +3,13 @@
 格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 并遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.2.1](https://github.com/opentiny/web-agent/compare/v1.2.0...v1.2.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* use available port when configured port is busy ([#10](https://github.com/opentiny/web-agent/issues/10)) ([d345bf0](https://github.com/opentiny/web-agent/commit/d345bf0f62d0ef85ae46f0d4f92cde879167e2fb))
+
 ## [1.2.0](https://github.com/opentiny/web-agent/compare/v1.1.0...v1.2.0) (2026-02-13)
 
 
