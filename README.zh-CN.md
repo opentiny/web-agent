@@ -212,26 +212,37 @@ pnpm pm2:delete
 
 #### 使用 Docker
 
-```dockerfile
-FROM node:22-alpine
+**前置条件：** 已安装 [Docker](https://docs.docker.com/get-docker/) 和 [Docker Compose](https://docs.docker.com/compose/install/)。
 
-WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile --prod
+```bash
+# 1. 配置环境变量
+cp example.env .env
+# 按需编辑 .env
 
-COPY dist ./dist
+# 2. 一键启动
+docker compose up -d
 
-ENV NODE_ENV=production
-ENV AGENT_PORT=3000
-ENV AGENT_HOST=0.0.0.0
-
-EXPOSE 3000
-
-CMD ["node", "dist/server.js"]
+# 或使用 pnpm 脚本
+pnpm docker:up
 ```
 
-说明：该 Dockerfile 假设你已在本地执行 `pnpm build` 生成 `dist` 后再 `docker build`。
-若仓库不包含 `pnpm-lock.yaml`，请移除 `COPY pnpm-lock.yaml ./` 以及 `--frozen-lockfile` 参数。
+**常用命令：**
+
+```bash
+# 查看日志
+docker compose logs -f
+
+# 查看状态
+docker compose ps
+
+# 停止服务
+docker compose down
+
+# 重新构建并启动
+docker compose up -d --build
+```
+
+Docker 部署使用多阶段构建 — 无需在本地安装 Node.js 或 pnpm。容器内自动完成 TypeScript 编译，仅安装生产依赖，以非 root 用户运行，并内置健康检查。
 
 ### Nginx 反向代理配置示例
 

@@ -212,27 +212,37 @@ pnpm pm2:delete
 
 #### Using Docker
 
-```dockerfile
-FROM node:22-alpine
+**Prerequisites:** [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 
-WORKDIR /app
-COPY package.json ./
-COPY pnpm-lock.yaml ./
-RUN corepack enable && pnpm install --frozen-lockfile --prod
+```bash
+# 1. Configure environment variables
+cp example.env .env
+# Edit .env as needed
 
-COPY dist ./dist
+# 2. One-click start
+docker compose up -d
 
-ENV NODE_ENV=production
-ENV AGENT_PORT=3000
-ENV AGENT_HOST=0.0.0.0
-
-EXPOSE 3000
-
-CMD ["node", "dist/server.js"]
+# Or use pnpm script
+pnpm docker:up
 ```
 
-Note: This Dockerfile expects `dist` to be built locally before `docker build` (run `pnpm build` first).
-If your repo does not include `pnpm-lock.yaml`, remove the `COPY pnpm-lock.yaml ./` line and the `--frozen-lockfile` flag.
+**Common commands:**
+
+```bash
+# View logs
+docker compose logs -f
+
+# Check status
+docker compose ps
+
+# Stop service
+docker compose down
+
+# Rebuild and restart
+docker compose up -d --build
+```
+
+The Docker setup uses multi-stage builds — no local Node.js or pnpm installation required. The container builds TypeScript source, installs only production dependencies, and runs as a non-root user with built-in health checks.
 
 ### Nginx Reverse Proxy Configuration Example
 

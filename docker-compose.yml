@@ -1,0 +1,29 @@
+services:
+  web-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-agent
+    ports:
+      - '${AGENT_PORT:-3000}:3000'
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - NODE_ENV=production
+      - AGENT_HOST=0.0.0.0
+      - AGENT_PORT=3000
+    restart: unless-stopped
+    stop_grace_period: 10s
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3000/health').then(r=>{if(!r.ok)throw r.status}).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
