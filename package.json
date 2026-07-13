@@ -19,7 +19,8 @@
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --check \"**/*.ts\"",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "inspector": "npx @modelcontextprotocol/inspector"
   },
   "lint-staged": {
     "**/*.ts": [
